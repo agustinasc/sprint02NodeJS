@@ -1,6 +1,6 @@
 Sprint 02 - TP 03: Aplicación de Gestión de Superhéroes
 
-Bienvenidos al Sprint 02 del TP 03. Este proyecto es una aplicación básica para la gestión de superhéroes usando Node.js y MongoDB. En este sprint, nos enfocamos en implementar funcionalidades CRUD para agregar, ver, actualizar y eliminar superhéroes en nuestra base de datos.
+Este proyecto es una aplicación básica para la gestión de superhéroes usando Node.js y MongoDB. En este sprint, nos enfocamos en implementar funcionalidades CRUD para agregar, ver, actualizar y eliminar superhéroes en nuestra base de datos.
 
 Objetivos 
 
