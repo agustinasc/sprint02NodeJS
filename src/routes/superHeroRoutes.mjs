@@ -4,10 +4,9 @@ import {
     obtenerSuperheroePorIdController,
     obtenerTodosLosSuperheroesController,
     buscarSuperheroesPorAtributoController,
-    obtenerSuperheroesMayoresDe30,
     obtenerSuperheroesMayoresDe30Controller
 } from '../controllers/superheroesController.mjs';
-import { buscarSuperheroesPorAtributo } from '../services/superheroesService.mjs';
+
 
 const router = express.Router();
 
