@@ -17,7 +17,7 @@ app.use('/api', SuperHeroRoutes);
 
 //Manejo de errores para rutas no encontradas
 app.use((req, res) => {
-    res.status(404).send({ mensaje: "Ruta no encontrada"});
+    res.status(404).send({ mensaje: "Ruta no encontrada lala"});
 });
 
 //Iniciar el servidor

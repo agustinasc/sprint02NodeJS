@@ -9,7 +9,8 @@ const superheroSchema = new mongoose.Schema({
     poderes: [String],
     aliados: [String],
     enemigos: [String],
-    createdAt: { type: Date, default: Date.now}
-})
+    createdAt: { type: Date, default: Date.now}},  
+    { collection: 'Grupo-13' });
+
 
 export default mongoose.model('SuperHero', superheroSchema);
