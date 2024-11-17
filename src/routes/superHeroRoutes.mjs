@@ -4,9 +4,7 @@ import {
     obtenerSuperheroePorIdController,
     obtenerTodosLosSuperheroesController,
     buscarSuperheroesPorAtributoController,
-    obtenerSuperheroesMayoresDe30Controller,
-    agregarNuevoSuperheroeController,
-    actualizarSuperheroeController
+    obtenerSuperheroesMayoresDe30Controller
 } from '../controllers/superheroesController.mjs';
 
 
@@ -16,11 +14,5 @@ router.get('/heroes', obtenerTodosLosSuperheroesController);
 router.get('/heroes/:id', obtenerSuperheroePorIdController);
 router.get('/heroes/buscar/:atributo/:valor', buscarSuperheroesPorAtributoController);
 router.get('/heroes/mayores/30', obtenerSuperheroesMayoresDe30Controller);
-
-
-///SPRINT 03 - TP 01
-
-router.post('/heroes', agregarNuevoSuperheroeController)
-router.put('/heroes/:id', actualizarSuperheroeController)
 
 export default router;

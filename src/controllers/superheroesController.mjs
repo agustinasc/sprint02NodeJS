@@ -1,16 +1,27 @@
-import { obtenerSuperheroPorId, obtenerTodosLosSuperheroes, buscarSuperheroesPorAtributo, obtenerSuperheroesMayoresDe30, agregarNuevoSuperheroe } from '../services/superheroesService.mjs';
+import { obtenerSuperheroPorId, obtenerTodosLosSuperheroes, buscarSuperheroesPorAtributo, obtenerSuperheroesMayoresDe30 } from '../services/superheroesService.mjs';
 import { renderizarSuperheroe, renderizarListaSuperheroes, renderizarMensaje } from '../views/responseView.mjs';
 import mongoose from 'mongoose';
-
 
 export async function obtenerTodosLosSuperheroesController(req, res){
     const superheroes = await obtenerTodosLosSuperheroes();
     res.send(renderizarListaSuperheroes(superheroes))
 }
+//controlador para manejar la solicitud HTTP en la API, buscando al superheroe por su ID
 
+/* export async function obtenerSuperheroePorIdController(req, res){
+    const { id } = req.params;
+    const superheroe = await obtenerSuperheroPorId(id);
 
+    if(superheroe){
+        res.send(renderizarSuperheroe(superheroe));
+    } else {
+        res.status(404).send({ mensaje: "Superheroe no encontrado" })
+    }
+}
+ */
 export async function obtenerSuperheroePorIdController(req, res) {
     
+
     const { id } = req.params;
 
 
@@ -39,6 +50,8 @@ export async function obtenerSuperheroePorIdController(req, res) {
 }
 
 
+
+
 export  async function buscarSuperheroesPorAtributoController(req, res){
     const { atributo, valor} = req.params;
     const superheroes = await buscarSuperheroesPorAtributo(atributo, valor);
@@ -54,28 +67,4 @@ export  async function buscarSuperheroesPorAtributoController(req, res){
 export async function obtenerSuperheroesMayoresDe30Controller(req, res){
     const superheroes = await obtenerSuperheroesMayoresDe30();
     res.send(renderizarListaSuperheroes(superheroes))
-}
-
-
-///SPRINT 03 - TP 01
-
-export async function agregarNuevoSuperheroeController(req, res){
-    
-    try {
-        const nuevoSuperheroe = await agregarNuevoSuperheroe() 
-     
-        res.send(`Nuevo usuario creado con los datos: ${JSON.stringify(nuevoSuperheroe)}`)
-
-
-    } catch (error) {
-        // Manejo de errores si algo sale mal con la consulta o el servidor
-        console.error("Error al AGREGAR el superhéroe:", error);
-        res.status(500).send({ mensaje: "Hubo un problema al procesar la solicitud." });
-    }
-
-}
-
-export async function actualizarSuperheroeController(req, res){
-
-    
 }

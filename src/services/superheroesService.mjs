@@ -14,9 +14,3 @@ export async function buscarSuperheroesPorAtributo(atributo, valor){
 export async function obtenerSuperheroesMayoresDe30(){
     return await superHeroRepository.obtenerMayoresDe30();
 }
-
-///SPRINT 03 - TP01
-
-export async function agregarNuevoSuperheroe(){
-    return await superHeroRepository.agregarNuevoHero(req, res)
-}
