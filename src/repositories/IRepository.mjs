@@ -9,7 +9,13 @@ class IRepository {
         throw new Error("Metodo 'buscarPorAtributo()' no implementado")
     }
     obtenerMayoresDe30(){
-        throw new Error("Metodo 'ontenerMayoresDe30()' no implementado")
+        throw new Error("Metodo 'obtenerMayoresDe30()' no implementado")
+    }
+
+    //// SPRINT 03 - TP 01
+
+    agregarNuevoHero(){
+        throw new Error("Metodo 'agregarNuevoHero()' no implementado")
     }
 }
 export default IRepository;

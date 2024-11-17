@@ -29,6 +29,25 @@ class SuperHeroRepository extends IRepository {
         $expr: { $gte: [{ $size: "$poderes" }, 3] }
         })
     }
+    
+    
+    ///SPRINT 03 - TP01///
+
+    async agregarNuevoHero(req, res){
+
+        const datosNuevoHeroe = req.body;
+
+        const nuevoHeroe = new SuperHero(datosNuevoHeroe) 
+
+        // GUARDANDO EN LA BD
+        const guardarNuevoHeroe = await nuevoHeroe.save()
+
+        return guardarNuevoHeroe
+    }
 }
+
+
+
+
 
 export default new SuperHeroRepository();
