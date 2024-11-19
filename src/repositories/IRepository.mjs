@@ -11,5 +11,12 @@ class IRepository {
     obtenerMayoresDe30(){
         throw new Error("Metodo 'ontenerMayoresDe30()' no implementado")
     }
+
+    
+     //// SPRINT 03 - TP 01
+
+     agregarNuevoHero(){
+        throw new Error("Metodo 'agregarNuevoHero()' no implementado")
+    }
 }
 export default IRepository;
