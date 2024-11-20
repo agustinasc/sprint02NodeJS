@@ -23,6 +23,7 @@ export async function obtenerSuperheroesMayoresDe30(){
         try{
 
             return await superHeroRepository.agregarNuevoHero(nuevoSuperheroeData)
+
         } catch(error){
             console.error("Error en el servicio al agregar el superhéroe:", error);
         throw error;
@@ -33,14 +34,35 @@ export async function obtenerSuperheroesMayoresDe30(){
     //ACTUALIZAR SUPERHEROE
     export async function editarSuperheroe(id, newData){
 
-        try{
-            
-            
+        try{           
             const superheroEditado = await superHeroRepository.editarSuperhero(id, newData)
             return superheroEditado
         } catch (error) {
             
             throw new Error("Superheroe no encontrado o no se pudo actualizar");
+        }       
+    }
+
+    export async function eliminarSuperheroe(id){
+
+        try{
+            const superheroeEliminado = await superHeroRepository.eliminarSuperhero(id)
+            //console.log("Desde el servicio", superheroeEliminado);
+            
+            return superheroeEliminado
+        }catch(error){
+            throw new Error("Superheroe no encontrado o no se pudo actualizar");
         }
-        
+
+    }
+
+    export async function eliminarSuperheroePornombre(nombre){
+
+        try{
+            const superheroeEliminadoPornombre = await superHeroRepository.eliminarSuperHeroPorNombre(nombre) //consulta a la base de datos
+            return superheroeEliminadoPornombre
+
+        }catch(error){
+            throw new Error("Superheroe no encontrado o no se pudo actualizar (service)");
+        }
     }

@@ -1,4 +1,4 @@
-import { obtenerSuperheroPorId, obtenerTodosLosSuperheroes, buscarSuperheroesPorAtributo, obtenerSuperheroesMayoresDe30, agregarNuevoSuperheroe, editarSuperheroe, eliminarSuperheroe } from '../services/superheroesService.mjs';
+import { obtenerSuperheroPorId, obtenerTodosLosSuperheroes, buscarSuperheroesPorAtributo, obtenerSuperheroesMayoresDe30, agregarNuevoSuperheroe, editarSuperheroe, eliminarSuperheroe, eliminarSuperheroePornombre } from '../services/superheroesService.mjs';
 import { renderizarSuperheroe, renderizarListaSuperheroes, renderizarMensaje } from '../views/responseView.mjs';
 import mongoose from 'mongoose';
 
@@ -115,19 +115,61 @@ export async function editarSuperheroeController(req, res){
 }
 ///ELIMINAR SUPERHEROE
 
-export async function eliminarSuperheroeController() {
+export async function eliminarSuperheroeController(req, res) {
 
     try {
         //Obtenengo los datos de la solicitud de la URL 
-        const { id } = req.params; // Obtener el ID del parámetro de la URL
+        const { id } = req.params; // Obteniendo el ID del superheroe de la URL
 
         if (!mongoose.Types.ObjectId.isValid(id)) {
             return res.status(400).send({ mensaje: 'ID de superhéroe no válido.'});
         }
 
-         //Llamo al servicio para editar el superheroe
+         //Llamo al servicio para eliminar el superheroe
          const superheroeEliminado = await eliminarSuperheroe(id);
+         //console.log(superheroeEliminado);
+         
+
+          //Si no lo encontro devuelve lo siguiente:
+        if (!superheroeEliminado) {
+            return res.status(404).send({ mensaje: 'Superhéroe no encontrado' });
+        }
+
+        return res.status(200).send({ mensaje: 'ID de superhéroe eliminado', data: superheroeEliminado});
+
     } catch(error){
 
+         // Si hay errores
+         console.error(error);
+         res.status(500).send({
+             mensaje: 'Error al eliminar el superhéroe (controller)',
+             error: error.message
+         });
+
     }
+}
+
+export async function eliminarPorNombreSuperheroeController(req,res){
+
+        try{
+            const { nombre } = req.params; //Busca el nombre del SUperheroe a eliminar
+            //console.log(nombre);
+            
+            const superheroeEliminadoPornombre = await eliminarSuperheroePornombre(nombre) //Llama al servicio y espera
+            console.log(superheroeEliminadoPornombre);
+
+            if (!superheroeEliminadoPornombre) {
+                return res.status(404).send({ mensaje: 'Superhéroe no encontrado' });
+            }
+            return res.status(200).send({ mensaje: 'Nombre de superhéroe eliminado', data: superheroeEliminadoPornombre});
+
+        } catch(error){
+            // Si hay errores
+         console.error(error);
+         res.status(500).send({
+             mensaje: 'Error al eliminar el superhéroe (controller)',
+             error: error.message
+         });
+        }
+
 }

@@ -33,12 +33,13 @@ class SuperHeroRepository extends IRepository {
       ///SPRINT 03 - TP01///
 
     async agregarNuevoHero(datosNuevoHeroe){
-        ///Recibe datos y los guarda en la BD
 
-        try{
+        
+
+        try{ ///Recibe datos y los guarda en la BD
             const nuevoHeroe = new SuperHero(datosNuevoHeroe) 
 
-            const guardarNuevoHeroe = await nuevoHeroe.save()
+            const guardarNuevoHeroe = await nuevoHeroe.save() //Usando metodo save para guardar en la BD
             
             return guardarNuevoHeroe
 
@@ -67,6 +68,31 @@ class SuperHeroRepository extends IRepository {
             res.status(500).send({ mensaje: 'Error al actualizar el superheroe (repository)', error: error.message})
         }
     }
+
+    async eliminarSuperhero(id){
+        try{
+            
+            const superheroeEliminado = await SuperHero.findByIdAndDelete(id) //el metodo de mongoose findByIdAndDelete para encontrar al superheroe y eliminarlo
+            return superheroeEliminado
+        
+        }catch(error){
+            
+            throw new Error("Error al eliminar el superhéroe de la base de datos.(repository)");
+        
+        }
+    }
+
+    async eliminarSuperHeroPorNombre(nombre){
+        try {
+            const superheroeEliminadoPornombre = await SuperHero.findOneAndDelete({nombreSuperheroe: nombre}) //Mongoogse con su metodo "findOneAndDelete" encuentra al superheroe y lo elimina
+            return superheroeEliminadoPornombre
+
+        } catch (error) {
+            throw new Error("Error al eliminar el superhéroe de la base de datos.(repository)");
+        }
+    }
+
+
 }
 
 export default new SuperHeroRepository();
